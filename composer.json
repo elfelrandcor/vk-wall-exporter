@@ -1,0 +1,26 @@
+{
+  "name": "elfelrandcor/vk-wall-exporter",
+  "description": "vk-wall-exporter",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.2.0",
+    "atehnix/vk-client": "^1.3"
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/elfelrandcor/vk-wall-exporter.git"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Juriy Panasevich",
+      "email": "juriy.panasevich@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "JuriyPanasevich\\VkWallExporter\\": "src/"
+    }
+  }
+}
