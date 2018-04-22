@@ -47,7 +47,16 @@ class Mysql extends Destination {
 
     private function createInsertValue($post) {
         $photo = $this->extractAttachment($post);
-        return sprintf("('%s', '%s', '%s', '%s', '%s')", $post['owner_id'], $post['id'], json_encode($post), $post['text'], $photo);
+        $text = str_replace(["'", '\\'], ['"', '\\\\'], $post['text']);
+        $encode = json_encode($post, JSON_HEX_APOS | JSON_HEX_QUOT);
+        $encode = str_replace('\\', '\\\\', $encode);
+
+        return sprintf("('%s', '%s', '%s', '%s', '%s')",
+            abs($post['owner_id']),
+            $post['id'],
+            $encode,
+            $text, $photo
+        );
     }
 
     private function extractAttachment($post): string {
