@@ -56,7 +56,7 @@ class Vk {
      * @throws \ATehnix\VkClient\Exceptions\VkException
      * @throws ServiceException
      */
-    public function getPostsFromWall($owner = 0, $offset = 0, $count = 100) {
+    public function getPostsFromWall($owner = 0, $offset = 0, $count = 100): array {
         $params = [
             'offset' => $offset,
             'count' => $count
@@ -69,6 +69,10 @@ class Vk {
         }
 
         $request = $this->getRequest('wall.get', $params);
-        return $this->getResponse($request);
+        $items = (array)$this->getResponse($request)['items'];
+
+        return array_filter($items, function ($post) {
+            return (bool)$post['text'];
+        });
     }
 }
