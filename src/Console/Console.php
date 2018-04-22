@@ -16,7 +16,7 @@ class Console {
     public const FG_CYAN   = 36;
     public const FG_GREY   = 37;
 
-    public static function stringRender(string $string, int $code): string {
+    public static function stringRender(string $string, int $code = self::FG_GREY): string {
         return "\033[0m" . ($code !== '' ? "\033[" . $code . 'm' : '') . $string . "\033[0m" . PHP_EOL;
     }
 }
